@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo — Glass</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="mesh-bg" aria-hidden="true">
+    <div class="mesh-spotlight" id="mesh-spotlight"></div>
+    <div class="mesh-grid"></div>
+    <div class="mesh-blob mesh-blob--1"></div>
+    <div class="mesh-blob mesh-blob--2"></div>
+    <div class="mesh-blob mesh-blob--3"></div>
+    <div class="mesh-blob mesh-blob--4"></div>
+    <div class="mesh-noise"></div>
+  </div>
+
+  <main class="app">
+    <section class="glass-panel" id="glass-panel" aria-labelledby="app-title">
+      <header class="panel-header">
+        <div class="header-row">
+          <div class="header-text">
+            <p class="greeting" id="greeting">Good evening</p>
+            <h1 id="app-title" class="panel-title">My Tasks</h1>
+          </div>
+          <button type="button" class="btn-icon" id="theme-toggle" aria-label="Toggle light/dark theme">
+            <i data-lucide="sun" class="icon-sun"></i>
+            <i data-lucide="moon" class="icon-moon"></i>
+          </button>
+        </div>
+
+        <div class="progress-wrap" id="progress-wrap" hidden>
+          <svg class="progress-ring" viewBox="0 0 44 44" aria-hidden="true">
+            <circle class="progress-ring__track" cx="22" cy="22" r="18"></circle>
+            <circle class="progress-ring__fill" id="progress-ring-fill" cx="22" cy="22" r="18"></circle>
+          </svg>
+          <div class="progress-meta">
+            <span class="progress-label" id="progress-label">0% done</span>
+            <p class="panel-subtitle" id="task-count">0 tasks remaining</p>
+          </div>
+        </div>
+
+        <p class="panel-subtitle panel-subtitle--solo" id="task-count-solo">0 tasks remaining</p>
+      </header>
+
+      <form class="task-form" id="task-form" autocomplete="off">
+        <label for="task-input" class="visually-hidden">New task</label>
+        <input
+          type="text"
+          id="task-input"
+          class="task-input"
+          placeholder="What needs to be done?"
+          maxlength="200"
+          required
+        >
+        <button type="submit" class="btn-add" aria-label="Add task">
+          <i data-lucide="plus"></i>
+          <span>Add</span>
+        </button>
+      </form>
+
+      <div class="priority-picker" role="group" aria-label="Task priority">
+        <span class="priority-label">Priority</span>
+        <button type="button" class="priority-btn is-active" data-priority="low" aria-label="Low priority" title="Low priority">
+          <span class="priority-dot priority-dot--low"></span>
+        </button>
+        <button type="button" class="priority-btn" data-priority="medium" aria-label="Medium priority" title="Medium priority">
+          <span class="priority-dot priority-dot--medium"></span>
+        </button>
+        <button type="button" class="priority-btn" data-priority="high" aria-label="High priority" title="High priority">
+          <span class="priority-dot priority-dot--high"></span>
+        </button>
+      </div>
+
+      <div class="toolbar">
+        <div class="filter-pills" role="tablist" aria-label="Filter tasks">
+          <button type="button" class="filter-pill is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button type="button" class="filter-pill" data-filter="active" role="tab" aria-selected="false">Active</button>
+          <button type="button" class="filter-pill" data-filter="completed" role="tab" aria-selected="false">Done</button>
+        </div>
+        <div class="search-wrap">
+          <i data-lucide="search" class="search-icon"></i>
+          <input
+            type="search"
+            id="search-input"
+            class="search-input"
+            placeholder="Search…"
+            aria-label="Search tasks"
+          >
+        </div>
+      </div>
+
+      <ul class="task-list" id="task-list" role="list"></ul>
+
+      <footer class="panel-footer" id="panel-footer" hidden>
+        <button type="button" class="btn-clear" id="btn-clear-completed">
+          <i data-lucide="eraser"></i>
+          Clear completed
+        </button>
+      </footer>
+    </section>
+  </main>
+
+  <script src="todo.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" async onload="window.refreshLucideIcons && window.refreshLucideIcons()"></script>
+</body>
+</html>
